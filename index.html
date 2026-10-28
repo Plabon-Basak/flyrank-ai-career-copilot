@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Career Profile Settings | AI Career Copilot</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <a class="brand" href="#" aria-label="Career Copilot home">
+      <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+      <span>Career Copilot</span>
+    </a>
+
+    <nav class="nav" aria-label="Main navigation">
+      <a href="#"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11.5 12 4l9 7.5M5 10v10h14V10M9 20v-6h6v6"/></svg><span>Overview</span></a>
+      <a href="#"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9zM14 3v6h6M8 13h8M8 17h8"/></svg><span>Resume Analysis</span></a>
+      <a href="#"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v14H4zM8 9h8M8 13h5"/></svg><span>Job Match</span></a>
+      <a href="#"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>Applications</span></a>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <a class="active" href="#"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span>Career Profile</span></a>
+      <button class="user-menu" type="button" aria-label="Open account menu">
+        <span class="avatar">PB</span>
+        <span class="user-meta"><strong>Plabon Basak</strong><small>Personal account</small></span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+      </button>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div class="mobile-brand"><span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span></div>
+      <div class="breadcrumbs"><span>Settings</span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg><strong>Career Profile</strong></div>
+      <button class="icon-button" type="button" aria-label="Notifications"><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg><span class="notification-dot"></span></button>
+    </header>
+
+    <div class="content">
+      <div class="page-heading">
+        <div><p class="eyebrow">YOUR PROFILE</p><h1>Career Profile</h1></div>
+        <span class="profile-status"><span></span>Profile 80% complete</span>
+      </div>
+
+      <form id="profileForm" novalidate>
+        <section class="card" aria-labelledby="professional-heading">
+          <div class="section-heading"><div><h2 id="professional-heading">Professional information</h2><p>Help employers and AI tools understand your experience.</p></div></div>
+          <div class="form-grid">
+            <label class="field"><span>Full name</span><input id="fullName" name="fullName" type="text" value="Plabon Basak" required autocomplete="name"><small class="error"></small></label>
+            <label class="field"><span>Professional title</span><input id="title" name="title" type="text" value="Senior Product Designer" placeholder="e.g. Product Designer" autocomplete="organization-title"><small class="error"></small></label>
+            <label class="field"><span>Email address</span><div class="input-icon"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4zM4 7l8 6 8-6"/></svg><input id="email" name="email" type="email" value="plabon@example.com" required autocomplete="email"></div><small class="error"></small></label>
+            <label class="field"><span>Phone number</span><div class="phone-input"><select id="countryCode" aria-label="Country code"><option>+880</option><option>+1</option><option>+44</option><option>+91</option></select><input id="phone" name="phone" type="tel" value="1712 345 678" autocomplete="tel-national"></div><small class="error"></small></label>
+            <label class="field"><span>Location</span><div class="input-icon"><svg viewBox="0 0 24 24"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg><input id="location" name="location" type="text" value="Dhaka, Bangladesh" autocomplete="address-level2"></div><small class="error"></small></label>
+            <label class="field"><span>LinkedIn profile</span><div class="input-prefix"><span>linkedin.com/in/</span><input id="linkedin" name="linkedin" type="text" value="plabon-basak"></div><small class="error"></small></label>
+          </div>
+        </section>
+
+        <section class="card" aria-labelledby="career-heading">
+          <div class="section-heading"><div><h2 id="career-heading">Career preferences</h2><p>Tell us what roles and opportunities you're looking for.</p></div></div>
+          <div class="form-grid">
+            <label class="field"><span>Target role</span><input id="targetRole" name="targetRole" type="text" value="Product Designer" placeholder="e.g. Product Designer"></label>
+            <label class="field"><span>Years of experience</span><select id="experience" name="experience"><option>0–1 years</option><option>2–3 years</option><option selected>4–6 years</option><option>7–10 years</option><option>10+ years</option></select></label>
+            <label class="field"><span>Employment type</span><select id="employment" name="employment"><option selected>Full-time</option><option>Part-time</option><option>Contract</option><option>Freelance</option><option>Internship</option></select></label>
+            <label class="field"><span>Work preference</span><select id="workPreference" name="workPreference"><option>On-site</option><option selected>Hybrid</option><option>Remote</option></select></label>
+            <label class="field full-width"><span>Career summary</span><textarea id="summary" name="summary" rows="4" maxlength="500" placeholder="Describe your background, strengths, and career goals...">Product designer with 5+ years of experience creating intuitive digital products. Skilled in user research, interaction design, and building scalable design systems.</textarea><small class="counter"><b id="charCount">168</b>/500</small></label>
+          </div>
+        </section>
+
+        <div class="form-actions">
+          <button class="button secondary" type="button" id="cancelButton">Cancel</button>
+          <button class="button primary" type="submit">Save changes</button>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"><span>✓</span><div><strong>Profile updated</strong><small>Your career profile was saved successfully.</small></div></div>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -30,7 +30,15 @@ Plabon Basak
 
 ## Getting Started
 
-This repository does not currently contain a runnable application, package manifest, or source files. There is therefore no working local build or development command yet.
+Open `index.html` directly in a modern browser, or serve the project locally with:
+
+```bash
+python -m http.server 8080
+```
+
+Then visit `http://localhost:8080`.
+
+The career profile settings page includes responsive professional information and career preference forms. Valid data is stored locally in the browser between visits.
 
 ### Development Planning
 
