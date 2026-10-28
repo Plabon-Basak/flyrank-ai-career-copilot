@@ -30,16 +30,20 @@ Plabon Basak
 
 ## Getting Started
 
-### Prerequisites
-- A modern web browser
-- Node.js and npm
-- An AI assistant with access to the Google Gemini API
+This repository does not currently contain a runnable application, package manifest, or source files. There is therefore no working local build or development command yet.
 
-### Local Setup
+### Development Planning
 
 1. Clone the repository.
-2. Open the project directory.
-3. Follow the setup instructions added as development progresses.
+2. Review the project overview and roadmap in this README.
+3. Review `CLAUDE.md` for the planned technology stack, coding conventions, and development guidelines.
+4. Wait for the implementation phase to begin before following application-specific setup instructions.
+
+### Future Requirements
+
+When implementation starts, the project will require a modern web browser and the planned HTML, CSS, JavaScript, and Google Gemini API integration. A Node.js toolchain should only be added if the implementation adopts one.
+
+Any future Gemini API integration must keep API credentials outside frontend source code and follow the security guidance below.
 
 ## Roadmap
 
