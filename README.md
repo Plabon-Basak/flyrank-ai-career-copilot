@@ -27,3 +27,30 @@ Currently in the environment setup and project planning phase.
 ## Author
 
 Plabon Basak
+
+## Getting Started
+
+### Prerequisites
+- A modern web browser
+- Node.js and npm
+- An AI assistant with access to the Google Gemini API
+
+### Local Setup
+
+1. Clone the repository.
+2. Open the project directory.
+3. Follow the setup instructions added as development progresses.
+
+## Roadmap
+
+- [ ] Create the responsive user interface
+- [ ] Implement resume input
+- [ ] Implement job description input
+- [ ] Integrate AI-powered analysis
+- [ ] Generate ATS-style compatibility feedback
+- [ ] Identify missing skills
+- [ ] Provide resume improvement suggestions
+
+## Security
+
+API credentials must never be committed to the repository. Any future backend integration must keep secrets in environment variables.
