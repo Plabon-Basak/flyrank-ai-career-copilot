@@ -1,60 +1,57 @@
 # AI Career Copilot
 
-An AI-powered career assistant that helps job seekers evaluate their resumes against job descriptions.
+AI Career Copilot is a client-side career assistant for job seekers. The current application provides a Career Profile Settings form for storing profile information locally in the browser.
 
-## Project Overview
+## Features
 
-AI Career Copilot aims to provide actionable feedback through AI-powered resume analysis.
+- Career profile settings with required and optional fields
+- Accessible field-level validation feedback
+- Browser localStorage persistence
+- Reset-to-last-saved behavior
+- Responsive HTML and CSS interface
+- Node.js built-in validation tests
 
-## Planned Features
+## Technology Stack
 
-- Resume and job description analysis
-- ATS-style compatibility scoring
-- Missing skills identification
-- Resume improvement suggestions
+- HTML5
+- CSS3
+- Vanilla JavaScript
+- Node.js `node:test` for validation tests
 
-## Planned Technology Stack
+## Run the Application
 
-- HTML
-- CSS
-- JavaScript
-- Google Gemini API
+No package installation or backend is required.
 
-## Project Status
+1. Clone or download this repository.
+2. Open the project directory.
+3. Start a local static server, for example:
 
-Currently in the environment setup and project planning phase.
+   ```powershell
+   python -m http.server 8000
+   ```
 
-## Author
+4. Visit `http://localhost:8000/index.html` in a modern browser.
 
-Plabon Basak
+Opening `index.html` directly can work, but serving it over a local HTTP server is recommended for consistent browser behavior.
 
-## Getting Started
+## Run Tests
 
-This repository does not currently contain a runnable application, package manifest, or source files. There is therefore no working local build or development command yet.
+Requires Node.js 18 or newer. From the project root, run:
 
-### Development Planning
+```powershell
+node --test
+```
 
-1. Clone the repository.
-2. Review the project overview and roadmap in this README.
-3. Review `CLAUDE.md` for the planned technology stack, coding conventions, and development guidelines.
-4. Wait for the implementation phase to begin before following application-specific setup instructions.
+## Storage
 
-### Future Requirements
+The profile is saved under the consistent localStorage key:
 
-When implementation starts, the project will require a modern web browser and the planned HTML, CSS, JavaScript, and Google Gemini API integration. A Node.js toolchain should only be added if the implementation adopts one.
+```text
+aiCareerCopilot.careerProfile.v1
+```
 
-Any future Gemini API integration must keep API credentials outside frontend source code and follow the security guidance below.
-
-## Roadmap
-
-- [ ] Create the responsive user interface
-- [ ] Implement resume input
-- [ ] Implement job description input
-- [ ] Integrate AI-powered analysis
-- [ ] Generate ATS-style compatibility feedback
-- [ ] Identify missing skills
-- [ ] Provide resume improvement suggestions
+No profile information is sent to a backend or external API.
 
 ## Security
 
-API credentials must never be committed to the repository. Any future backend integration must keep secrets in environment variables.
+API credentials must never be committed to the repository. Future integrations should keep secrets outside frontend source code.

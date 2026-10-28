@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Career profile settings for AI Career Copilot">
+  <title>Career Profile Settings | AI Career Copilot</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="page-shell">
+    <section class="profile-card" aria-labelledby="profile-title">
+      <header class="card-header">
+        <p class="eyebrow">AI Career Copilot</p>
+        <h1 id="profile-title">Career Profile Settings</h1>
+        <p>Tell us where you are in your career and what you are looking for.</p>
+      </header>
+
+      <form id="career-profile-form" novalidate>
+        <div id="form-status" class="status-message" role="status" aria-live="polite"></div>
+
+        <div class="form-grid">
+          <div class="field-group">
+            <label for="full-name">Full name <span aria-hidden="true">*</span></label>
+            <input id="full-name" name="fullName" type="text" autocomplete="name" required aria-describedby="full-name-error">
+            <p class="field-error" id="full-name-error"></p>
+          </div>
+
+          <div class="field-group">
+            <label for="email">Email address <span aria-hidden="true">*</span></label>
+            <input id="email" name="email" type="email" autocomplete="email" required aria-describedby="email-error">
+            <p class="field-error" id="email-error"></p>
+          </div>
+
+          <div class="field-group field-group-wide">
+            <label for="target-role">Target job role <span aria-hidden="true">*</span></label>
+            <input id="target-role" name="targetRole" type="text" autocomplete="organization-title" required aria-describedby="target-role-error">
+            <p class="field-error" id="target-role-error"></p>
+          </div>
+
+          <div class="field-group">
+            <label for="experience-level">Experience level <span aria-hidden="true">*</span></label>
+            <select id="experience-level" name="experienceLevel" required aria-describedby="experience-level-error">
+              <option value="">Select experience level</option>
+              <option value="Student">Student</option>
+              <option value="Entry-level">Entry-level</option>
+              <option value="Mid-level">Mid-level</option>
+              <option value="Senior">Senior</option>
+            </select>
+            <p class="field-error" id="experience-level-error"></p>
+          </div>
+
+          <div class="field-group">
+            <label for="work-arrangement">Preferred work arrangement <span aria-hidden="true">*</span></label>
+            <select id="work-arrangement" name="workArrangement" required aria-describedby="work-arrangement-error">
+              <option value="">Select work arrangement</option>
+              <option value="Remote">Remote</option>
+              <option value="Hybrid">Hybrid</option>
+              <option value="On-site">On-site</option>
+            </select>
+            <p class="field-error" id="work-arrangement-error"></p>
+          </div>
+
+          <div class="field-group field-group-wide">
+            <label for="skills">Skills and interests</label>
+            <textarea id="skills" name="skills" rows="4" placeholder="For example: JavaScript, data analysis, mentoring"></textarea>
+            <p class="field-error" id="skills-error"></p>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button class="button button-secondary" id="reset-button" type="button">Reset</button>
+          <button class="button button-primary" type="submit">Save profile</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <script src="validation.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
