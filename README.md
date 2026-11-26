@@ -1,6 +1,12 @@
 # AI Career Copilot
 
-AI Career Copilot is a Next.js application that helps job seekers compare a resume with a job description and receive structured, AI-generated career feedback. Users can maintain a local career profile, request an analysis, and review an overall match score, skill gaps, ATS-oriented feedback, resume improvements, and a learning roadmap.
+AI Career Copilot addresses the problem of tailoring a resume to specific job requirements: job seekers and students often need to understand which skills already match a role and which gaps to address before applying. The application accepts resume text and a job description, then uses Gemini-powered analysis to return a structured match score, matched and missing skills, ATS-oriented feedback, resume improvements, and a learning roadmap. This project was selected as a focused full-stack submission because it combines a practical user problem with a server-side AI integration, accessible form and results workflows, automated tests, security-conscious API handling, and a production deployment.
+
+## Submission Information
+
+- Production URL: https://flyrank-ai-career-copilot.vercel.app/
+- GitHub repository: https://github.com/Plabon-Basak/flyrank-ai-career-copilot
+- Production commit: `53c8578`
 
 ## Features
 
@@ -16,13 +22,13 @@ AI Career Copilot is a Next.js application that helps job seekers compare a resu
 
 ## Technology Stack
 
-- Next.js 16.4.5 with the App Router and Route Handlers
-- React 19.3.0
-- TypeScript 5
-- Tailwind CSS 4 through `@tailwindcss/turbopack`
-- Google Gemini API through `@google/genai`
+- Next.js 16.4.6 with the App Router and Route Handlers
+- React 19
+- TypeScript
+- Tailwind CSS v4 through `@tailwindcss/turbopack`
+- Gemini API using `@google/genai`
 - Zod for request and AI-response schema validation
-- Node.js built-in test runner, Vitest 5, Testing Library, and V8 coverage
+- Node.js built-in test runner, Vitest, React Testing Library, and V8 coverage
 
 ## Application Routes
 
@@ -43,7 +49,7 @@ AI Career Copilot is a Next.js application that helps job seekers compare a resu
 
 ## Prerequisites
 
-- Node.js 20.9.0 or newer, as required by the installed Next.js 16 release.
+- Node.js 20.9.0 or newer, as required by the installed Next.js 16.4.6 release.
 - npm.
 - A Google Gemini API key and a supported Gemini model name for live analysis.
 
@@ -92,6 +98,36 @@ AI Career Copilot is a Next.js application that helps job seekers compare a resu
 | `npm run lint` | Run ESLint. |
 | `npm run typecheck` | Run TypeScript type checking without emitting files. |
 
+## Verification Evidence
+
+- Node tests: 36 passed.
+- Component tests: 23 passed.
+- Coverage: statements 77%, branches 68.63%, functions 85.71%, lines 78.21%.
+- `npm audit`: 0 vulnerabilities.
+- Production build: passed.
+- Lint: 0 errors; 4 warnings from generated coverage files.
+- Typecheck: passed.
+- Deployment details and submission checklist: [`DEPLOYMENT_CHECKLIST.md`](./DEPLOYMENT_CHECKLIST.md).
+
+## Final Mobile Lighthouse Results
+
+| Category | Score |
+| --- | --- |
+| Performance | 98 |
+| Accessibility | 100 |
+| Best Practices | 100 |
+| SEO | 100 |
+
+These are final mobile Lighthouse results for the production submission. No final axe or WAVE pass is claimed, and no axe package was installed. Lighthouse's automated accessibility score does not replace manual WCAG testing.
+
+## Accessibility Improvements
+
+- Profile validation errors are programmatically associated with their fields.
+- Required-field semantics and first-invalid focus are implemented.
+- Text contrast was improved; verified `slate-400` combinations are 7.68:1 on `slate-950` and 6.79:1 on `slate-900`.
+- Health status announcements and semantic timestamps are implemented.
+- Navigation is labeled, and decorative icons are hidden from assistive technology.
+
 ## Project Structure
 
 ```text
@@ -114,6 +150,7 @@ vitest.config.mts            Vitest and coverage configuration
 vitest.setup.ts              Testing Library cleanup and matchers
 .env.example                 Environment variable template
 WORKFLOW.md                  Historical vague-versus-precise workflow comparison
+DEPLOYMENT_CHECKLIST.md      Final deployment verification and rollback procedure
 ```
 
 Older vanilla HTML, CSS, and JavaScript artifacts remain tracked from the earlier workflow experiment, but the runnable application is the Next.js App Router project described above.
