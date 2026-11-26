@@ -1,7 +1,7 @@
 
 "use client";
 import Link from "next/link";
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 
 const STORAGE_KEY = "aiCareerCopilot.careerProfile.v1";
 
@@ -18,6 +18,19 @@ type Profile = {
 };
 
 type ProfileErrors = Partial<Record<keyof Profile, string>>;
+
+const PROFILE_FIELD_ORDER: (keyof Profile)[] = [
+  "fullName",
+  "email",
+  "targetRole",
+  "experienceLevel",
+  "workArrangement",
+  "skills",
+];
+
+function errorId(name: keyof Profile) {
+  return `profile-${name}-error`;
+}
 
 const emptyProfile: Profile = {
   fullName: "",
@@ -71,7 +84,11 @@ export default function ProfilePage() {
   const [status, setStatus] = useState("");
   const [statusType, setStatusType] = useState<"success" | "error">("success");
   const [loaded, setLoaded] = useState(false);
-
+  const fieldRefs = useRef<
+    Partial<
+      Record<keyof Profile, HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | null>
+    >
+  >({});
 
   useEffect(() => {
     let active = true;
@@ -151,6 +168,14 @@ export default function ProfilePage() {
     if (Object.keys(validationErrors).length > 0) {
       setStatus("Please correct the highlighted fields before saving.");
       setStatusType("error");
+
+      const firstInvalidField = PROFILE_FIELD_ORDER.find(
+        (field) => validationErrors[field]
+      );
+      if (firstInvalidField) {
+        fieldRefs.current[firstInvalidField]?.focus();
+      }
+
       return;
     }
 
@@ -179,12 +204,26 @@ export default function ProfilePage() {
     setStatusType("success");
   }
 
+  function handleDelete() {
+    try {
+      localStorage.removeItem(STORAGE_KEY);
+      setProfile({ ...emptyProfile });
+      setLastSavedProfile(null);
+      setErrors({});
+      setStatus("Saved profile data deleted from this browser.");
+      setStatusType("success");
+    } catch {
+      setStatus("Saved profile data could not be deleted in this browser.");
+      setStatusType("error");
+    }
+  }
+
   const inputClass =
-    "mt-2 w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-3 text-sm text-white outline-none transition placeholder:text-slate-600 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/20";
+    "mt-2 w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-3 text-sm text-white outline-none transition placeholder:text-slate-400 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/20";
 
   function fieldError(name: keyof Profile) {
     return errors[name] ? (
-      <p className="mt-2 text-sm text-red-400" role="alert">
+      <p id={errorId(name)} className="mt-2 text-sm text-red-400" role="alert">
         {errors[name]}
       </p>
     ) : null;
@@ -247,14 +286,18 @@ export default function ProfilePage() {
                 Full name <span className="text-red-400">*</span>
               </label>
               <input
+                ref={(element) => {
+                  fieldRefs.current.fullName = element;
+                }}
                 id="fullName"
                 name="fullName"
                 autoComplete="name"
+                required
                 className={inputClass}
                 value={profile.fullName}
                 onChange={(e) => updateField("fullName", e.target.value)}
                 aria-invalid={!!errors.fullName}
-                aria-describedby={errors.fullName ? "fullName-error" : undefined}
+                aria-describedby={errors.fullName ? errorId("fullName") : undefined}
               />
               {fieldError("fullName")}
             </div>
@@ -264,15 +307,19 @@ export default function ProfilePage() {
                 Email address <span className="text-red-400">*</span>
               </label>
               <input
+                ref={(element) => {
+                  fieldRefs.current.email = element;
+                }}
                 id="email"
                 name="email"
                 type="email"
                 autoComplete="email"
+                required
                 className={inputClass}
                 value={profile.email}
                 onChange={(e) => updateField("email", e.target.value)}
                 aria-invalid={!!errors.email}
-                aria-describedby={errors.email ? "email-error" : undefined}
+                aria-describedby={errors.email ? errorId("email") : undefined}
               />
               {fieldError("email")}
             </div>
@@ -282,14 +329,21 @@ export default function ProfilePage() {
                 Target job role <span className="text-red-400">*</span>
               </label>
               <input
+                ref={(element) => {
+                  fieldRefs.current.targetRole = element;
+                }}
                 id="targetRole"
                 name="targetRole"
                 autoComplete="organization-title"
                 placeholder="e.g. Machine Learning Engineer"
+                required
                 className={inputClass}
                 value={profile.targetRole}
                 onChange={(e) => updateField("targetRole", e.target.value)}
                 aria-invalid={!!errors.targetRole}
+                aria-describedby={
+                  errors.targetRole ? errorId("targetRole") : undefined
+                }
               />
               {fieldError("targetRole")}
             </div>
@@ -299,14 +353,21 @@ export default function ProfilePage() {
                 Experience level <span className="text-red-400">*</span>
               </label>
               <select
+                ref={(element) => {
+                  fieldRefs.current.experienceLevel = element;
+                }}
                 id="experienceLevel"
                 name="experienceLevel"
+                required
                 className={inputClass}
                 value={profile.experienceLevel}
                 onChange={(e) =>
                   updateField("experienceLevel", e.target.value)
                 }
                 aria-invalid={!!errors.experienceLevel}
+                aria-describedby={
+                  errors.experienceLevel ? errorId("experienceLevel") : undefined
+                }
               >
                 <option value="">Select experience level</option>
                 {EXPERIENCE_LEVELS.map((level) => (
@@ -324,14 +385,21 @@ export default function ProfilePage() {
                 <span className="text-red-400">*</span>
               </label>
               <select
+                ref={(element) => {
+                  fieldRefs.current.workArrangement = element;
+                }}
                 id="workArrangement"
                 name="workArrangement"
+                required
                 className={inputClass}
                 value={profile.workArrangement}
                 onChange={(e) =>
                   updateField("workArrangement", e.target.value)
                 }
                 aria-invalid={!!errors.workArrangement}
+                aria-describedby={
+                  errors.workArrangement ? errorId("workArrangement") : undefined
+                }
               >
                 <option value="">Select work arrangement</option>
                 {WORK_ARRANGEMENTS.map((arrangement) => (
@@ -348,6 +416,9 @@ export default function ProfilePage() {
                 Skills and interests
               </label>
               <textarea
+                ref={(element) => {
+                  fieldRefs.current.skills = element;
+                }}
                 id="skills"
                 name="skills"
                 rows={4}
@@ -355,7 +426,9 @@ export default function ProfilePage() {
                 className={inputClass}
                 value={profile.skills}
                 onChange={(e) => updateField("skills", e.target.value)}
+                aria-describedby={errors.skills ? errorId("skills") : undefined}
               />
+              {fieldError("skills")}
             </div>
           </div>
 
@@ -369,6 +442,14 @@ export default function ProfilePage() {
             </button>
 
             <button
+              type="button"
+              onClick={handleDelete}
+              className="rounded-lg border border-red-900 px-6 py-3 text-sm font-semibold text-red-300 transition hover:bg-red-950/40"
+            >
+              Delete saved data
+            </button>
+
+            <button
               type="submit"
               className="rounded-lg bg-cyan-400 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300"
             >
@@ -377,8 +458,8 @@ export default function ProfilePage() {
           </div>
         </form>
 
-        <p className="mt-5 text-center text-xs text-slate-500">
-          Your profile is stored locally in this browser.
+        <p className="mt-5 text-center text-xs text-slate-400">
+          Your profile is stored locally in this browser. Choose “Delete saved data” to remove it.
         </p>
       </div>
     </main>

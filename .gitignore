@@ -34,6 +34,9 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# Vitest
+.vitest/
+
 # Miscellaneous
 *.pem
 .DS_Store
@@ -42,3 +45,6 @@ Thumbs.db
 # Editors
 .vscode/
 .idea/
+
+coverage/
+.vitest/

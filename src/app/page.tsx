@@ -9,7 +9,7 @@ const activities = [
   {
     title: "Resume analysis",
     description: "Compare your resume with a job description",
-    status: "Coming soon",
+    status: "Available",
     icon: "▤",
   },
   {
@@ -60,8 +60,8 @@ export default function DashboardPage() {
 
           <div className="rounded-2xl border border-slate-800 bg-slate-900 p-6">
             <p className="text-sm text-slate-400">Resume analyses</p>
-            <p className="mt-3 text-2xl font-bold text-white">0</p>
-            <p className="mt-2 text-sm text-slate-400">Analysis feature not implemented yet</p>
+            <p className="mt-3 text-2xl font-bold text-white">Ready</p>
+            <p className="mt-2 text-sm text-emerald-400">AI analysis is available</p>
           </div>
 
           <div className="rounded-2xl border border-slate-800 bg-slate-900 p-6 sm:col-span-2 lg:col-span-1">
@@ -81,7 +81,10 @@ export default function DashboardPage() {
                   key={activity.title}
                   className="flex items-center gap-4 rounded-xl border border-slate-800 bg-slate-900 p-5"
                 >
-                  <div className="flex size-11 shrink-0 items-center justify-center rounded-lg bg-slate-800 text-xl text-cyan-400">
+                  <div
+                    aria-hidden="true"
+                    className="flex size-11 shrink-0 items-center justify-center rounded-lg bg-slate-800 text-xl text-cyan-400"
+                  >
                     {activity.icon}
                   </div>
                   <div className="min-w-0 flex-1">
@@ -108,9 +111,13 @@ export default function DashboardPage() {
                     href={action.href}
                     className="flex items-center gap-3 rounded-lg p-4 text-sm text-slate-300 transition hover:bg-slate-800 hover:text-cyan-400"
                   >
-                    <span className="text-lg">{action.icon}</span>
+                    <span aria-hidden="true" className="text-lg">
+                      {action.icon}
+                    </span>
                     <span>{action.label}</span>
-                    <span className="ml-auto">→</span>
+                    <span aria-hidden="true" className="ml-auto">
+                      →
+                    </span>
                   </a>
                 ))}
               </div>
@@ -121,15 +128,15 @@ export default function DashboardPage() {
                 Project roadmap
               </p>
               <p className="mt-2 text-sm leading-6 text-slate-400">
-                The application is being developed in stages. Resume analysis,
-                history, and AI-powered career recommendations are planned
-                features, not yet available.
+                Resume analysis is implemented and available. Analysis history is a
+                placeholder, and additional AI-powered career recommendations are
+                planned for later stages.
               </p>
             </div>
           </aside>
         </section>
 
-        <footer className="mt-14 border-t border-slate-800 pt-6 text-center text-xs text-slate-500">
+        <footer className="mt-14 border-t border-slate-800 pt-6 text-center text-xs text-slate-400">
           FlyRank Career Copilot · Built with Next.js and TypeScript
         </footer>
       </div>

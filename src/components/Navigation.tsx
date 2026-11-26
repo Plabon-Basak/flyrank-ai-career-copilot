@@ -5,7 +5,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const navigationLinks = [
-  { label: "Dashboard", href: "/" },
   { label: "Profile", href: "/profile" },
   { label: "Analyze", href: "/analyze" },
   { label: "History", href: "/history" },
@@ -16,9 +15,13 @@ export default function Navigation() {
   const pathname = usePathname();
 
   return (
-    <nav className="border-b border-slate-800 bg-slate-950">
+    <nav aria-label="Main navigation" className="border-b border-slate-800 bg-slate-950">
       <div className="mx-auto flex max-w-7xl flex-col gap-4 px-5 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-8">
-        <Link href="/" className="text-lg font-bold tracking-tight text-white">
+        <Link
+          href="/"
+          aria-current={pathname === "/" ? "page" : undefined}
+          className="text-lg font-bold tracking-tight text-white"
+        >
           FlyRank<span className="text-cyan-400">.</span>
           <span className="ml-2 text-sm font-medium text-slate-400">
             Career Copilot

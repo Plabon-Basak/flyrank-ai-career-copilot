@@ -85,6 +85,13 @@ export default function HealthPage() {
         </p>
 
         <section className="mt-10 rounded-2xl border border-slate-800 bg-slate-900 p-7">
+          <p className="sr-only" role="status" aria-live="polite">
+            {loading
+              ? "Checking application health..."
+              : health
+                ? `Application health updated. Overall status: ${health.status}.`
+                : ""}
+          </p>
           {loading ? (
             <p className="text-sm text-slate-400">
               Checking application health...
@@ -114,9 +121,12 @@ export default function HealthPage() {
 
               <div className="flex justify-between gap-4">
                 <span className="text-sm text-slate-400">Last checked</span>
-                <span className="text-right text-sm text-slate-300">
+                <time
+                  className="text-right text-sm text-slate-300"
+                  dateTime={health.timestamp}
+                >
                   {new Date(health.timestamp).toLocaleString()}
-                </span>
+                </time>
               </div>
             </div>
           ) : null}
